@@ -1,0 +1,34 @@
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'App_Account:subscriber_update' %}">
+        <i class="far fa-user"></i>
+        <span>Update Profile</span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'App_Account:become_Subscriber' %}">
+        <i class="far fa-users"></i>
+        <span>Become Subscriber</span>
+    </a>
+</li>
+
+
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'App_Account:passwordchange' %}">
+        <i class="far fa-key"></i>
+        <span>Change Password</span>
+    </a>
+</li>
+ {% if request.user.profile.is_editor == True %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'App_Account:my_author_news' %}">
+        <i class="far fa-newspaper"></i>
+        <span>Author News</span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'App_Account:my_author_comments' %}">
+        <i class="far fa-comment"></i>
+        <span>News Comments</span>
+    </a>
+</li>
+{% endif %}

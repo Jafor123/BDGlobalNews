@@ -1,0 +1,47 @@
+{% extends 'Subscriber/s_base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+          <div class="row mb-3">
+          <div class="col-lg-12">
+              <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Post Comment Table</h6>
+                </div>
+                <div class="table-responsive p-3">
+                  <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>No</th>
+                        <th>Title</th>
+                        <th>Post Date</th>
+                        <th>Total Comment</th>
+                        <th>Action</th>
+                      </tr>
+
+                    </thead>
+                    <tbody>
+                    {% for g in all_news %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ g.news_title }}</td>
+                       <td>{{g.post_date|date }}</td>
+                        <td class="text-center">{{g.count_comment }}</td>
+                        <td class=" text-center">
+                            <a href="{% url 'App_Account:my_author_comment_view' g.id %}"><i class="fas fa-comment-slash text-warning"></i></a>
+                        </td>
+                      </tr>
+                       {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center bg-warning">No News</td>
+                        </tr>
+                     {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+</div>
+{% endblock %}

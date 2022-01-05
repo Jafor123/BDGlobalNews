@@ -1,0 +1,21 @@
+{% extends 'App_News/base.html' %}
+{% block content %}
+    <h1>Welcome to BD Global News</h1>
+<a href="{% url 'App_News:addnews' %}">Add News</a>
+<hr>
+ <div class="row p-4">
+ {% for n in allnews %}
+<div class="card col-lg-6 col-md-6  p-2 my-2">
+  <img src="{{ n.thumbnail.url }}" class="card-img-top" style="height: 17rem;" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ n.news_title }}</h5>
+    <p class="card-text"><small class="text-muted">Author : {{ n.author }}</small></p>
+    <p class="card-text">{{ n.short_description}}</p>
+    <a href="{% url 'App_News:viewnews' n.news_title n.id %}" class="btn btn-primary">Continue Reading</a>
+    <p class="card-text"><small class="text-muted">post {{ n.post_date | timesince }}</small></p>
+  </div>
+</div>
+ {% endfor %}
+ </div>
+{% endblock %}
+

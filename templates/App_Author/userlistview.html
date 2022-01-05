@@ -1,0 +1,110 @@
+{% extends 'App_Author/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="row mb-3">
+            <div class="col-lg-12  m-0 m-auto">
+             {%for message in messages %}
+                 {%if "editor_make" in message.tags %}
+                     <div class="alert alert-success alert-dismissible" role="alert">
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                             <span aria-hidden="true">×</span>
+                         </button>
+                         {{ message }}
+                     </div>
+                 {% endif %}
+             {% endfor %}
+            </div>
+          <div class="col-lg-12 m-0 m-auto">
+              <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">All Subscriber List</h6>
+                </div>
+                <div class="table-responsive p-3">
+                  <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>No</th>
+                        <th>Username</th>
+                        <th>Full Name</th>
+                        <th>Country</th>
+                        <th>City</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                      </tr>
+
+                    </thead>
+                    <tbody>
+                    {% for g in all_Subscriber %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ g.user }}</td>
+                        {% if g.user.first_name != "" or  g.user.last_name != ""  %}
+                        <td>{{ g.user.first_name }} {{ g.user.last_name }} </td>
+                        {% else %}
+                        <td><i class="fas fa-times-circle text-danger"></i></td>
+                        {% endif %}
+                        {% if  g.user.profile.country != "" %}
+                        <td>{{ g.user.profile.country }}</td>
+                        {% else %}
+                        <td><i class="fas fa-times-circle text-danger"></i></td>
+                        {% endif %}
+                        {% if  g.user.profile.city != "" %}
+                        <td>{{ g.user.profile.city }}</td>
+                        {% else %}
+                        <td><i class="fas fa-times-circle text-danger"></i></td>
+                        {% endif %}
+                        {% if  g.user.profile.phone != "" %}
+                        <td>{{ g.user.profile.phone }}</td>
+                        {% else %}
+                        <td><i class="fas fa-times-circle text-danger"></i></td>
+                        {% endif %}
+                        {% if  g.user.profile.address != "" %}
+                        <td>{{ g.user.profile.address }}</td>
+                        {% else %}
+                        <td><i class="fas fa-times-circle text-danger"></i></td>
+                        {% endif %}
+                        <td>
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" value="{{ g.id }}" data-target="#make_editor">
+                              Make Editor</button>
+                        </td>
+                      </tr>
+                     {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $("button").click(function() {
+    var fired_button = $(this).val();
+    document.getElementById("user_list_id").value = fired_button;
+
+});
+</script>
+<div class="modal fade" id="make_editor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form  action="{% url 'App_Author:make_editor' %}" method="post">{% csrf_token %}
+                    <h3 class="text-center text-danger">Editor Making Process</h3><br>
+                    <p class="text-center text-success">Are you sure you want to make this user as your Editor?</p>
+                    <input name="user_list_id" id="user_list_id" value="" type="hidden">
+                    <input name="next" type="hidden" value="{{ request.path }}">
+                    <div class="clearfix text-center">
+                        <button type="button" data-dismiss="modal" class="cancelbtn btn btn-danger">Cancel</button>
+                        <button type="submit" class="deletebtn btn btn-success">Yes</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

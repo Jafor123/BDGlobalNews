@@ -1,0 +1,205 @@
+{% extends 'App_News/b_base.html' %}
+{% load static %}
+{% block content %}
+<div id="ht-content" class="ht-site-content ht-clearfix" style="padding-top: 0px;">
+    <header class="ht-main-header">
+        <div class="ht-container">
+            <h1 class="ht-main-title">{{ single_category.name }}</h1>
+            <nav role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
+                <ul class="trail-items">
+                    <li itemprop="itemListElement" class="trail-item trail-begin">
+                        <a href="{% url 'App_News:index' %}" rel="home" itemprop="item">
+                            <span itemprop="name"><i class="icofont-home"></i> Home</span>
+                        </a>
+                        <meta itemprop="position" content="1" />
+                    </li>
+                    <li itemprop="itemListElement"class="trail-item trail-end">
+                        <span itemprop="name">{{ single_category.name }}</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- .entry-header -->
+
+    <div class="ht-main-content ht-clearfix ht-container">
+
+        <div class="ht-site-wrapper">
+
+            <div id="primary" class="content-area">
+                <div class="site-main-loop">
+                      <div class="vl-news-block style8">
+                                <h2 class="vl-block-title"><span class="vl-title">{{ single_category.name }}</span></h2>
+                                <div class="vl-grid-6-block">
+                                    {% for n in  all_news %}
+                                    <div class="vl-post-item ht-clearfix">
+                                        <div class="vl-post-thumb">
+                                            <a href="{% url 'App_News:viewnews' n.news_title n.id %}">
+                                                <div class="vl-thumb-container">
+                                                    <img class="vl-lazy" alt="thumbnail" src="{{ n.thumbnail.url }}" data-src="{{ n.thumbnail.url }}" />
+                                                </div>
+                                            </a>
+                                            <div class="vl-primary-cat-block">
+                                                <a class="vl-primary-cat vl-category-8" href="{% url 'App_News:viewcategory' n.category.name n.category.id %}">{{ n.category.name }}</a></div>
+                                        </div>
+
+                                        <div class="vl-post-content">
+                                            <h3 class="vl-post-title">
+                                                <a href="{% url 'App_News:viewnews' n.news_title n.id %}">{{ n.news_title }}</a>
+                                            </h3>
+                                            <div class="vl-post-metas">
+                                                <span class="vl-posted-by">
+                                                    <i class="mdi mdi-account"></i>{{ n.author.username }}
+                                                </span>
+                                                <span class="vl-posted-on"><i class="mdi mdi-clock-time-four-outline"></i>{{n.post_date | timesince}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     {% empty %}
+                                       <div class="ht-cta-buttons" style="margin: 0 auto;">
+                                           <a style="background-color:#ff9400;color:#FFFFFF;" class="ht-cta-button ht-cta-button1">
+                                               There is no News in this category
+                                           </a>
+                                       </div>
+
+                                    {% endfor %}
+                                </div>
+                            </div>
+{#                    <div class="viral-pro-hentry-wrap">#}
+{#                        {% for post in all_news %}#}
+{#                        <article id="post-78" class="viral-pro-hentry blog-layout4 post-78 post type-post status-publish format-standard has-post-thumbnail hentry category-opinions category-politics">#}
+{#                            <div class="ht-article-wrap">#}
+{#                                <figure class="entry-figure">#}
+{#                                    <a href="{% url 'App_News:viewnews' post.news_title post.id %}">#}
+{#                                        <div class="entry-thumb-container">#}
+{#                                            <img src="{{ post.thumbnail.url }}" alt="{{ post.news_title }}" />#}
+{#                                        </div>#}
+{#                                    </a>#}
+{#                                    <div class="ht-post-date">#}
+{#                                        <div class="ht-day">{{ post.post_date.day }}</div>#}
+{#                                        <div class="ht-month">{{ post.post_date|date:"M" }}</div>#}
+{#                                    </div>#}
+{#                                </figure>#}
+{##}
+{#                                <div class="ht-post-content">#}
+{#                                    <div class="entry-meta">#}
+{#                                        <span class="entry-categories">#}
+{#                                            <i class="mdi mdi-folder"></i>#}
+{#                                            <span  rel="category tag">Politics</span>#}
+{#                                        </span>#}
+{#                                    </div>#}
+{##}
+{#                                    <header class="entry-header">#}
+{#                                        <h3 class="entry-title">#}
+{#                                            <a href="{% url 'App_News:viewnews' post.news_title post.id %}" >#}
+{#                                               {{ post.news_title }}#}
+{#                                            </a>#}
+{#                                        </h3>#}
+{#                                    </header>#}
+{#                                    <!-- .entry-header -->#}
+{##}
+{#                                    <div class="entry-meta">#}
+{#                                        <span class="entry-author">#}
+{#                                            <span class="author vcard">#}
+{#                                                <a class="url fn n" href="{% url 'App_News:view_author_post' post.author %}">#}
+{#                                                    <i class="mdi mdi-account"></i>{{ post.author }}</a>#}
+{#                                            </span>#}
+{#                                        </span>#}
+{#                                        <span class="entry-comment">#}
+{#                                            <span class="comment-link">#}
+{#                                                <i class="mdi mdi-comment"></i>{{ post.count_comment }} Comments#}
+{#                                            </span>#}
+{#                                        </span>#}
+{#                                    </div>#}
+{#                                    <!-- .entry-meta -->#}
+{##}
+{#                                    <div class="entry-content">#}
+{#                                        <p style="text-align: justify;">{{ post.short_description }}</p>#}
+{#                                    </div>#}
+{#                                    <!-- .entry-content -->#}
+{##}
+{#                                    <div class="entry-readmore">#}
+{#                                        <a href="{% url 'App_News:viewnews' post.news_title post.id %}">Read More</a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </article>#}
+{#                        {% endfor %}#}
+{#                    </div>#}
+                </div>
+                                        {% if all_news.has_other_pages %}
+                        <nav class="navigation pagination" style="margin-top: 10px;" role="navigation" aria-label="Posts">
+                            <h2 class="screen-reader-text">Posts navigation</h2>
+                            <div class="nav-links">
+                                 {% if all_news.has_previous %}
+                                    <a class="next page-numbers" href="?page={{ all_news.previous_page_number }}">Previous</a>
+                                 {% endif %}
+                                 {% for i in all_news.paginator.page_range %}
+                                  {% if all_news.number == i %}
+                                    <a class="page-numbers" style="background: green;">{{ i }}</a>
+                                  {% else %}
+                                    <a class="page-numbers" href="?page={{ i }}">{{ i }}</a>
+                                  {% endif %}
+                                {% endfor %}
+                                {% if all_news.has_next %}
+                                   <a class="next page-numbers" href="?page={{ all_news.next_page_number }}">Next</a>
+                                {% endif %}
+
+                            </div>
+                        </nav>
+                        {% endif %}
+            </div>
+            <!-- #primary -->
+
+            <div id="secondary" class="widget-area" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+                <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 914.5px;">
+                    <aside id="viral_pro_advertisement-1" class="widget widget_viral_pro_advertisement">
+                        <div class="ht-advertisment">
+                            <h4 class="widget-title">Advertisement</h4>
+                            <div class="ht-ads-image">
+                                <img alt="Advertisement" src="{% static 'ads/ads5.png' %}"/>
+                            </div>
+                        </div>
+                    </aside>
+                    <aside id="viral_pro_post_list-1" class="widget widget_viral_pro_post_list">
+                        <h4 class="widget-title">Featured News</h4>
+                        <div class="ht-post-listing style2">
+                           {% for post in featured_news %}
+                            <div class="ht-post-list ht-clearfix">
+                                <div class="ht-pl-image">
+                                    <a href="{% url 'App_News:viewnews' post.news_title post.id %}">
+                                        <img
+                                            alt="{{ post.news_title }}"
+                                            src="{{ post.thumbnail.url }}"
+                                        />
+                                    </a>
+                                </div>
+
+                                <div class="ht-pl-content">
+                                    <h3 class="ht-pl-title vl-post-title">
+                                        <a href="{% url 'App_News:viewnews' post.news_title post.id %}">
+                                            {{ post.news_title }}
+                                        </a>
+                                    </h3>
+
+                                    <div class="ht-pl-date">
+                                        <span class="vl-posted-on">
+                                            <i class="mdi mdi-clock-time-four-outline"></i>{{ post.post_date|timesince }} ago
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                           {% endfor %}
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+            <!-- #secondary -->
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+

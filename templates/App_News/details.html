@@ -1,0 +1,370 @@
+{% extends 'App_News/b_base.html' %}
+{% load static %}
+{% block content %}
+<div id="ht-content" class="ht-site-content ht-clearfix">
+
+            <article id="post-78" class="post-78 post type-post status-publish format-standard has-post-thumbnail hentry category-opinions category-politics">
+
+                <div class="entry-header">
+                     <nav role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs" itemprop="breadcrumb">
+                        <ul class="trail-items" itemscope itemtype="http://schema.org/BreadcrumbList">
+                            <meta name="numberOfItems" content="2" />
+                            <meta name="itemListOrder" content="Ascending" />
+                            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="trail-item trail-begin"><a href="{% url 'App_News:index' %}" rel="home" itemprop="item"><span itemprop="name"><i class="icofont-home"></i> Home</span></a>
+                                <meta itemprop="position" content="1" />
+                            </li>
+                            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="trail-item trail-end"><span itemprop="name">{{ single_post.news_title }}</span>
+                                <meta itemprop="position" content="2" />
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="entry-header-wrapper">
+                        <div class="ht-container">
+                            <h1 class="entry-title">{{ single_post.news_title }}</h1>
+                            <div class="single-entry-meta">
+                                <span class="entry-author"> <img alt='' src='{{ single_post.author.profile.photo.url }}' srcset='{{ single_post.author.profile.photo.url }} 2x' class='avatar avatar-32 photo' height='32' width='32' loading='lazy'/><span class="author vcard">{{ single_post.author }}</span></span>
+                                <span
+                                    class="entry-post-date"><i class="mdi mdi-clock-time-four-outline"></i><time class="entry-date published updated" datetime="2019-12-12T11:56:33+00:00">{{ single_post.post_date|timesince }} ago</time></span><span class="entry-comment"><i class="mdi mdi-comment-outline"></i>{{ comments.count }} Comments</span>
+                                    <span
+                                        class="entry-views"><i class="mdi mdi-eye-outline"></i>114</span>
+                            </div>
+                            <!-- .entry-meta -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ht-main-content ht-container ht-clearfix">
+                    <div class="ht-site-wrapper">
+
+                        <div id="primary" class="content-area">
+
+                            <div class="entry-wrapper">
+                                <div class="entry-content">
+                                    {{ single_post.description|safe }}
+                                </div>
+                                <div class="ht-social-share">
+                                    <span>Share</span>
+                                    <div class="viral-pro-share-buttons">
+                                        <a class="facebook-share" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u= {{ request.build_absolute_uri }}">
+                                            <i class="social_facebook_circle"></i><span class="screen-reader-text">Facebook</span>
+                                        </a>
+                                        <a
+                                            class="twitter-share"
+                                            target="_blank"
+                                            href="https://twitter.com/intent/tweet?text={{single_post.news_title  }}&amp;url={{ request.build_absolute_uri }}"
+                                        >
+                                            <i class="social_twitter_circle"></i><span class="screen-reader-text">Twitter</span>
+                                        </a>
+                                        <a
+                                            class="linkedin-share"
+                                            target="_blank"
+                                            href="https://www.linkedin.com/sharing/share-offsite/?url="
+                                        >
+                                            <i class="social_linkedin_circle"></i><span class="screen-reader-text">LinkedIn</span>
+                                        </a>
+                                        <a
+                                            class="pinterest-share"
+                                            target="_blank"
+                                            href="https://pinterest.com/pin/create/button/?url={{ request.build_absolute_uri }}&amp;media={{ single_post.thumbnail.url }}&amp;description={{ single_post.short_description }}"
+                                        >
+                                            <i class="social_pinterest_circle"></i><span class="screen-reader-text">Pinterest</span>
+                                        </a>
+                                        <a
+                                            class="stumbleupon-share"
+                                            target="_blank"
+                                            href="https://stumbleupon.com/submit?url={{ request.build_absolute_uri }}&amp;title={{single_post.news_title  }}"
+                                        >
+                                            <i class="social_stumbleupon_circle"></i><span class="screen-reader-text">Stumbleupon</span>
+                                        </a>
+
+                                    </div>
+
+                                    <div class="viral-pro-share-buttons">
+                                        <div id="reaction_section">
+                                         {% include 'App_News/reaction_section.html' %}
+                                  </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                           <div class="viral-pro-author-info">
+
+                             <div class="viral-pro-author-avatar">
+                                        <a href="{% url 'App_News:view_author_post' single_post.author %}" rel="author">
+                                            <img alt="" src="{{  single_post.author.profile.photo.url }}" srcset="{{  single_post.author.profile.photo.url }} 2x" class="avatar avatar-100 photo" height="100" width="100" loading="lazy">                        </a>
+                                    </div><!-- .author-avatar -->
+
+                                <div class="viral-pro-author-description">
+                                    <h5>By {{ single_post.author }}</h5>
+                                     <p>{{ single_post.author.profile.about }}</p>
+
+                                    <div class="viral-pro-author-icons">
+                                        <a href="{{ single_post.author.profile.fb_id }}" target="_blank"><i class="social_facebook_circle"></i></a>
+                                        <a href="{{ single_post.author.profile.tw_id }}"><i class="social_twitter_circle"></i></a>
+                                        <a href="{{ single_post.author.profile.linkd_id }}"><i class="social_linkedin_circle"></i></a>
+                                        <a href="{{ single_post.author.profile.instra_id }}"><i class="social_instagram_circle"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                           <nav class="navigation post-navigation" role="navigation">
+                                <div class="nav-links">
+                                     {% if single_post.get_previous_by_post_date %}
+                                    <div class="nav-previous ht-clearfix">
+                                        <a href="{% url 'App_News:viewnews' single_post.get_previous_by_post_date.news_title single_post.get_previous_by_post_date.id %}" rel="prev">
+                                            <img width="150" height="150" src="{{ single_post.get_previous_by_post_date.thumbnail.url }}" class="attachment-template-150x150 size-template-150x150 wp-post-image" alt="" loading="lazy"
+                                                 srcset="{{ single_post.get_previous_by_post_date.thumbnail.url }} 150w, {{ single_post.get_previous_by_post_date.thumbnail.url }} 700w, {{ single_post.get_previous_by_post_date.thumbnail.url }} 500w" sizes="(max-width: 150px) 100vw, 150px" />
+                                            <span>Previous Post</span>{{single_post.get_previous_by_post_date.news_title}}
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                    {% if single_post.get_next_by_post_date %}
+                                    <div class="nav-next ht-clearfix">
+                                        <a href="{% url 'App_News:viewnews' single_post.get_next_by_post_date.news_title single_post.get_next_by_post_date.id %}" rel="next">
+                                            <img width="150" height="150" src="{{ single_post.get_next_by_post_date.thumbnail.url }}" class="attachment-template-150x150 size-template-150x150 wp-post-image" alt="" loading="lazy"
+                                                 srcset="{{ single_post.get_next_by_post_date.thumbnail.url }} 150w, {{ single_post.get_next_by_post_date.thumbnail.url }} 700w,{{ single_post.get_next_by_post_date.thumbnail.url }} 500w" sizes="(max-width: 150px) 100vw, 150px" />
+                                            <span>Next Post</span>{{ single_post.get_next_by_post_date.news_title }}
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                           </nav>
+                            <div id="comments" class="comments-area">
+                                <div id="respond" class="comment-respond">
+                                    <h4 id="reply-title" class="widget-title comment-reply-title">LEAVE A COMMENT</h4>
+                                    <div class="scope-comment-section">
+                                        {% if is_spam %}
+                                        <h4 style="color: #ff9400;border: 1px solid red;padding: 10px;border-radius: 21px;"> So sorry you are a spam user declared by the Author .So you can not comment anymore in this Post</h4>
+                                        {% else %}
+                                        {% include 'App_News/comment_section.html' %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <!-- #comments -->
+                           <div class="viral-pro-related-post style4">
+                                <h4 class="related-post-title widget-title">You May Also Like</h4>
+                                <ul class="viral-pro-related-post-wrap">
+                                 {% for suggest in suggest_news %}
+                                <li>
+                                    <div class="relatedthumb">
+                                        <a href="{% url 'App_News:viewnews' suggest.news_title suggest.id %}">
+                                            <img alt="{{ suggest.news_title }}" src="{{ suggest.thumbnail.url }}" />
+                                        </a>
+                                    </div>
+
+                                    <div class="relatedtitle">
+                                        <h3 class="vl-post-title">
+                                            <a href="{% url 'App_News:viewnews' suggest.news_title suggest.id %}" rel="bookmark" title="29 motivational quotes for business and other works">
+                                                {{ suggest }}
+                                            </a>
+                                        </h3>
+                                        <div class="vl-post-metas">
+                                            <span class="vl-posted-by"><i class="mdi mdi-account"></i>{{ suggest.author }}</span><span class="vl-posted-on"><i class="mdi mdi-clock-time-four-outline"></i>{{ suggest.post_date|timesince }} ago</span>
+                                        </div>
+
+                                        <div class="related-excerpt">
+                                           {{ suggest.short_description }}
+                                        </div>
+                                    </div>
+                                </li>
+                                 {% endfor %}
+                                </ul>
+                           </div>
+
+                        </div>
+                        <!-- #primary -->
+
+                        <div id="secondary" class="widget-area">
+                            <div class="theiaStickySidebar">
+                                <aside id="_pro_advertisement-1" class="widget widget__pro_advertisement">
+                                    <div class="ht-advertisment">
+                                        <h4 class="widget-title">Advertisement</h4>
+                                        <div class="ht-ads-image">
+                                            <img alt="Advertisement" src="{% static 'ads/ads5.png' %}" />
+                                        </div>
+                                    </div>
+                                </aside>
+                                <aside id="_pro_post_list-1" class="widget widget__pro_post_list">
+                                    <h4 class="widget-title">Featured News</h4>
+                                    <div class="ht-post-listing style2">
+                                        {% for pop in featured_news %}
+                                        <div class="ht-post-list ht-clearfix">
+                                            <div class="ht-pl-image">
+                                                <a href="{% url 'App_News:viewnews' pop.news_title pop.id %}">
+                                                <img alt="{{ pop.news_title }}" src="{{ pop.thumbnail.url }}"/>
+                                                </a>
+                                            </div>
+
+                                            <div class="ht-pl-content">
+                                                <h3 class="ht-pl-title vl-post-title">
+                                                    <a href="{% url 'App_News:viewnews' pop.news_title pop.id %}">
+                                                        {{ pop.news_title }}
+                                                    </a>
+                                                </h3>
+
+                                                <div class="ht-pl-date">
+                                                    <span class="vl-posted-on"><i class="mdi mdi-clock-time-four-outline"></i>{{ pop.post_date|timesince }} ago</span> </div>
+
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </aside>
+                            </div>
+                        </div>
+                        <!-- #secondary -->
+
+                    </div>
+
+                </div>
+
+
+            </article>
+            <!-- #post-## -->
+        </div>
+{#     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>#}
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+   <script type="text/javascript">
+      $(document).ready(function (event) {
+           $(".scope-reply-btn").click(function () {
+          $(this).parent().parent().next(".scope-replied-comments").fadeToggle();
+        });
+      $(document).on('click','#newslike_id',function(event) {
+            event.preventDefault();
+           var pk=$(this).attr('value');
+           $.ajax({
+              type:'POST',
+              url:'{% url 'App_News:news_like' %}',
+              data:{'id':pk,'csrfmiddlewaretoken':'{{ csrf_token }}'},
+              dataType:'json',
+              success : function (response) {
+                  $("#reaction_section").html(response['form']);
+                  console.log("done");
+              },
+              error: function (rs,e) {
+                  console.log(rs.responseText);
+              }
+           });
+        });
+
+      $(document).on("submit", ".scope-comment-form", function (event) {
+         console.log("scope comment");
+         event.preventDefault();
+         $.ajax({
+           type: "POST",
+           url: $(this).attr("action"),
+           data: $(this).serialize(),
+           dataType: "json",
+           success: function (response) {
+             $(".scope-comment-section").html(response["form"]);
+             $("textarea").val("");
+             $(".scope-reply-btn").click(function () {
+               $(this)
+                 .parent()
+                 .parent()
+                 .next(".scope-replied-comments")
+                 .fadeToggle();
+             });
+             $("textarea").val("");
+           },
+           error: function (rs, e) {
+             console.log(rs.responseText);
+           },
+         });
+       });
+
+      $(document).on("submit", ".un-scope-comment-form", function (event) {
+         console.log("scope comment");
+         event.preventDefault();
+         $.ajax({
+           type: "POST",
+           url: $(this).attr("action"),
+           data: $(this).serialize(),
+           dataType: "json",
+           success: function (response) {
+             $(".scope-comment-section").html(response["form"]);
+             $("textarea").val("");
+             $('input[type=text]').val("");
+             $(".scope-reply-btn").click(function () {
+               $(this)
+                 .parent()
+                 .parent()
+                 .next(".scope-replied-comments")
+                 .fadeToggle();
+             });
+             $("textarea").val("");
+             $('input[type=text]').val("");
+             $('input[type=email]').val("");
+           },
+           error: function (rs, e) {
+             console.log(rs.responseText);
+           },
+         });
+       });
+
+      $(document).on("submit", ".scope-reply-form", function (event) {
+          console.log("ok");
+          event.preventDefault();
+          $.ajax({
+            type: "POST",
+            url: $(this).attr("action"),
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function (response) {
+              $(".scope-comment-section").html(response["form"]);
+              $("textarea").val("");
+              $(".scope-reply-btn").click(function () {
+                $(this)
+                  .parent()
+                  .parent()
+                  .next(".scope-replied-comments")
+                  .fadeToggle();
+              });
+              $("textarea").val("");
+            },
+            error: function (rs, e) {
+              console.log(rs.responseText);
+            },
+          });
+        });
+
+      $(document).on("submit", ".un-scope-reply-form", function (event) {
+          console.log("ok");
+          event.preventDefault();
+          $.ajax({
+            type: "POST",
+            url: $(this).attr("action"),
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function (response) {
+              $(".scope-comment-section").html(response["form"]);
+              $("textarea").val("");
+              $('input[type=text]').val("");
+              $('input[type=email]').val("");
+              $(".scope-reply-btn").click(function () {
+                $(this)
+                  .parent()
+                  .parent()
+                  .next(".scope-replied-comments")
+                  .fadeToggle();
+              });
+              $("textarea").val("");
+              $('input[type=text]').val("");
+              $('input[type=email]').val("");
+            },
+            error: function (rs, e) {
+              console.log(rs.responseText);
+            },
+          });
+        });
+
+
+      })
+
+  </script>
+{% endblock %}

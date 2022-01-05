@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="52f74727-e024-41a6-97fd-de654b87dff8" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1y7K1VJPLJXVvKfDvz0JE1wFAt9" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/wp-includes/js" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\Visual I\bdglobalnews\templates\App_Admin" />
+      <recent name="G:\Visual I\bdglobalnews\templates" />
+      <recent name="G:\Visual I\bdglobalnews\templates\App_Admin\Author" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Visual I\bdglobalnews\static\wp-includes\js" />
+      <recent name="G:\Visual I\bdglobalnews\static\wp-includes" />
+      <recent name="G:\Visual I\bdglobalnews\templates\App_News" />
+      <recent name="G:\Visual I\bdglobalnews\templates\App_Admin" />
+      <recent name="G:\Visual I\bdglobalnews\templates\App_Author" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.b_index.html">
+    <configuration name="b_index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/bdglobalnews/templates/App_News/b_index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="bdglobalnews" type="Python.DjangoServer" factoryName="Django server">
+      <module name="bdglobalnews" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.b_index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="52f74727-e024-41a6-97fd-de654b87dff8" name="Default Changelist" comment="" />
+      <created>1631596971971</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1631596971971</updated>
+      <workItem from="1631596973644" duration="2878000" />
+      <workItem from="1631611607188" duration="48333000" />
+      <workItem from="1631771542623" duration="30036000" />
+      <workItem from="1631820943878" duration="821000" />
+      <workItem from="1631869349882" duration="19050000" />
+      <workItem from="1631940339732" duration="20449000" />
+      <workItem from="1631982873032" duration="1217000" />
+      <workItem from="1631984373041" duration="1203000" />
+      <workItem from="1632026744500" duration="20949000" />
+      <workItem from="1632074410986" duration="614000" />
+      <workItem from="1632075107295" duration="20000" />
+      <workItem from="1632112234562" duration="5178000" />
+      <workItem from="1632127696352" duration="7090000" />
+      <workItem from="1632153425307" duration="595000" />
+      <workItem from="1632154687396" duration="10934000" />
+      <workItem from="1632197458573" duration="22742000" />
+      <workItem from="1632285519515" duration="24818000" />
+      <workItem from="1632371029175" duration="5687000" />
+      <workItem from="1632543245176" duration="24388000" />
+      <workItem from="1632586248027" duration="603000" />
+      <workItem from="1632632564788" duration="21886000" />
+      <workItem from="1632677712561" duration="73000" />
+      <workItem from="1632809212823" duration="5637000" />
+      <workItem from="1632821926998" duration="13494000" />
+      <workItem from="1632889887417" duration="20775000" />
+      <workItem from="1632931347165" duration="638000" />
+      <workItem from="1632932997845" duration="1466000" />
+      <workItem from="1632976075542" duration="16353000" />
+      <workItem from="1633022832539" duration="24000" />
+      <workItem from="1633202172722" duration="363000" />
+      <workItem from="1634371866192" duration="2391000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

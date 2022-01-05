@@ -1,0 +1,113 @@
+{% extends 'App_Author/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1 class="text-center">Subcategory Update Page</h1>
+ <div class="col-lg-9  m-0 m-auto">
+     {%for message in messages %}
+         {%if "apply_subcats" in message.tags %}
+             <div class="alert alert-success alert-dismissible" role="alert">
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     <span aria-hidden="true">×</span>
+                 </button>
+                 {{ message }}
+             </div>
+         {% endif %}
+         {%if "update_subcategory" in message.tags %}
+             <div class="alert alert-success alert-dismissible" role="alert">
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     <span aria-hidden="true">×</span>
+                 </button>
+                 {{ message }}
+             </div>
+         {% endif %}
+         {%if "subcategory_delete" in message.tags %}
+             <div class="alert alert-warning alert-dismissible" role="alert">
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     <span aria-hidden="true">×</span>
+                 </button>
+                 {{ message }}
+             </div>
+         {% endif %}
+     {% endfor %}
+ </div>
+<div class="container">
+    <form class="form col-md-9 m-o m-auto" method="post" action="{% url 'App_Author:subcategory_apply_update' subcategory_app.id %}">
+        {% csrf_token %}
+         {{ form |crispy}}
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <input class="btn btn-primary my-4" type="submit" value="Update Subategory">
+    </form>
+    <div class="row mb-3">
+          <div class="col-lg-9 m-0 m-auto">
+              <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Subcategory Apply Table</h6>
+                </div>
+               <div class="table-responsive p-3">
+                  <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>No</th>
+                        <th>Category</th>
+                        <th>Sub Category</th>
+                        <th>Apply Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+
+                    </thead>
+                    <tbody>
+                    {% for g in apply_subcategory %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ g.category }}</td>
+                        <td>{{ g.name }}</td>
+                         <td>{{g.timestamp|date }}</td>
+                        {% if g.status == True %}
+                        <td class="text-center"><i class="fas fa-check-circle text-success"></i></td>
+                        {% else %}
+                        <td class="text-center"><i class="fas fa-times-circle text-danger"></i></td>
+                        {% endif %}
+                        <td>
+                            <button style="border: none;background: no-repeat;outline: none;" data-toggle="modal" value="{{ g.id }}" data-target="#subcat_deletec">
+                                <i class="fa fa-trash text-danger"></i></button>
+                            <a href="{% url 'App_Author:subcategory_apply_update' g.id %}"><i class="text-primary fas fa-fw fa-edit" style="color: #801d3b;"></i></a>
+                        </td>
+                      </tr>
+                     {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $("button").click(function() {
+    var fired_button = $(this).val();
+    document.getElementById("subcat_id").value = fired_button;
+
+});
+</script>
+<div class="modal fade" id="subcat_deletec" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form  action="{% url 'App_Author:subcategory_delete'%}" method="post">{% csrf_token %}
+                    <h3 class="text-center text-danger">Delete Application</h3><br>
+                    <p class="text-center text-success">Are you sure you want to delete your application?</p>
+                    <input name="subcat_id" id="subcat_id" value="" type="hidden">
+                    <div class="clearfix text-center">
+                        <button type="button" data-dismiss="modal" class="cancelbtn btn btn-success">Cancel</button>
+                        <button type="submit" class="deletebtn btn btn-danger">Delete</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

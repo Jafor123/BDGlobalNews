@@ -1,0 +1,12 @@
+
+<form method="post" action="{% url 'App_Author:spam_user' single_news.id %}">{% csrf_token %}
+<input type="hidden" name="comment_id" value="{{ com.id }}">
+<input type="hidden" name="next" value="{{ request.path }}">
+{% if com.spam == True %}
+<button id="spam_id" value="" class="btn btn-sm btn-danger" >Spamed</button>
+{% else %}
+<button id="spam_id" value="" class="btn btn-sm btn-warning" >Make Spam</button>
+{% endif %}
+</form>
+
+<button class="btn btn-sm btn-danger my-2" data-toggle="modal" value="{{ com.id }}" data-target="#author_comment_delete">Delete</button>

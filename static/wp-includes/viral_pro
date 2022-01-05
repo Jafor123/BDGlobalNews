@@ -1,0 +1,6 @@
+<html><head></head><body data-new-gr-c-s-check-loaded="14.1029.0" data-gr-ext-installed=""><br>
+<b>Fatal error</b>:  Uncaught Error: Call to undefined function get_header() in /home3/hashthemes/public_html/demo/viral-pro/wp-content/themes/viral-pro/index.php:7
+Stack trace:
+#0 {main}
+  thrown in <b>/home3/hashthemes/public_html/demo/viral-pro/wp-content/themes/viral-pro/index.php</b> on line <b>7</b><br>
+<div id="shadowMeasureIt"></div><div id="divCoordMeasureIt"></div><div id="divRectangleMeasureIt"><div id="divRectangleBGMeasureIt"></div></div><style>.tb_button {padding:1px;cursor:pointer;border-right: 1px solid #8b8b8b;border-left: 1px solid #FFF;border-bottom: 1px solid #fff;}.tb_button.hover {borer:2px outset #def; background-color: #f8f8f8 !important;}.ws_toolbar {z-index:100000} .ws_toolbar .ws_tb_btn {cursor:pointer;border:1px solid #555;padding:3px}   .tb_highlight{background-color:yellow} .tb_hide {visibility:hidden} .ws_toolbar img {padding:2px;margin:0px}</style></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

@@ -1,0 +1,4 @@
+{% autoescape off %}
+Hi {{ email }},
+Please click on the link to confirm your email for live your comment,{{ domain }}{% url 'App_News:activate' email=u_email token=token %}
+{% endautoescape %}

@@ -1,0 +1,90 @@
+{% extends 'App_Author/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+        <div class="col-lg-12  m-0 m-auto">
+                {%for message in messages %}
+                    {%if "comment_delete" in message.tags %}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    {{ message }}
+                  </div>
+                    {% endif %}
+                 {% endfor %}
+        </div>
+        <div class="col-xl-12 col-lg-7 mb-4">
+              <div class="card">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">{{ single_news.news_title }}</h6>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>NO</th>
+                        <th>Comment / Reply</th>
+                        <th>User</th>
+                        <th>Comment On</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for com in single_news.get_category_wise_comments %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ com.content }}</td>
+                        {% if com.user != None %}
+                        <td>{{ com.user }}</td>
+                        {% else %}
+                          <td>{{ com.name }}</td>
+                        {% endif %}
+                        <td><span>{{com.timestamp|date}}<br>{{ com.timestamp|time }}</span></td>
+                        <td id="spam_section">
+                            {% include 'App_Author/spam_button.html' %}
+                        </td>
+                      </tr>
+                      {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center bg-warning">There is no comment of this News</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $("button").click(function() {
+    var fired_button = $(this).val();
+    document.getElementById("delc").value = fired_button;
+
+});
+</script>
+<div class="modal fade" id="deletecomment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form  action="{% url 'App_Author:author_delete_comment'%}" method="post">{% csrf_token %}
+                    <h3 class="text-center text-danger">Remove Comment</h3><br>
+                    <p class="text-center text-success">Are you sure you want to remove this comment?</p>
+                    <input name="delc" id="delc" value="" type="hidden">
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <div class="clearfix text-center">
+                        <button type="button" data-dismiss="modal" class="cancelbtn btn btn-success">Cancel</button>
+                        <button type="submit" class="deletebtn btn btn-danger">Remove</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

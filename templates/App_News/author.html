@@ -1,0 +1,138 @@
+{% extends 'App_News/b_base.html' %}
+{% load static %}
+{% block content %}
+            <header class="ht-main-header">
+                <div class="ht-container">
+                    <div class="author-post-avatar">
+                        <img style="border-radius: 100%;" src='{{ author_data.profile.photo.url }}' srcset='{{ author_data.profile.photo.url }} 2x' class='avatar avatar-100 photo' height='100'
+                            width='100' loading='lazy' /> </div>
+                    <h1 class="ht-main-title"><span class="vcard">{{ author_data.username }}</span></h1>
+                    <div class="taxonomy-description">
+                        {{ author_data.profile.about }}
+                    </div>
+                    <div class="author-post-count">
+                        {{ author_data }} News Posts </div>
+
+                    <nav role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs" itemprop="breadcrumb">
+                        <ul class="trail-items">
+                            <meta name="numberOfItems" content="2" />
+                            <meta name="itemListOrder" content="Ascending" />
+                            <li itemprop="itemListElement" class="trail-item trail-begin">
+                                <a href="{% url 'App_News:index' %}" rel="home" itemprop="item"><span itemprop="name">
+                                    <i class="icofont-home"></i> Home</span></a>
+                                <meta itemprop="position" content="1" />
+                            </li>
+                            <li itemprop="itemListElement" class="trail-item trail-end"><span itemprop="name">{{ author_data }}</span>
+                                <meta itemprop="position" content="2" />
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+            <!-- .entry-header -->
+
+            <div class="ht-main-content ht-clearfix ht-container">
+                <div class="ht-site-wrapper">
+                    <div id="primary" class="content-area" style="margin-bottom: 25px;">
+
+                        <div class="site-main-loop">
+                            <div class="vl-news-block style8">
+                                <h2 class="vl-block-title"><span class="vl-title">{{ author_data.username }}</span></h2>
+                                <div class="vl-grid-6-block">
+                                    {% for n in  all_news %}
+                                    <div class="vl-post-item ht-clearfix">
+                                        <div class="vl-post-thumb">
+                                            <a href="{% url 'App_News:viewnews' n.news_title n.id %}">
+                                                <div class="vl-thumb-container">
+                                                    <img class="vl-lazy" alt="thumbnail" src="{{ n.thumbnail.url }}" data-src="{{ n.thumbnail.url }}" />
+                                                </div>
+                                            </a>
+                                            <div class="vl-primary-cat-block">
+                                                <a class="vl-primary-cat vl-category-8" href="{% url 'App_News:viewcategory' n.category.name n.category.id %}">{{ n.category.name }}</a></div>
+                                        </div>
+
+                                        <div class="vl-post-content">
+                                            <h3 class="vl-post-title">
+                                                <a href="{% url 'App_News:viewnews' n.news_title n.id %}">{{ n.news_title }}</a>
+                                            </h3>
+                                            <div class="vl-post-metas">
+                                                <span class="vl-posted-by">
+                                                    <i class="mdi mdi-account"></i>{{ n.author.username }}
+                                                </span>
+                                                <span class="vl-posted-on"><i class="mdi mdi-clock-time-four-outline"></i>{{n.post_date | timesince}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        {% if all_news.has_other_pages %}
+                        <nav class="navigation pagination" style="margin-top: 10px;" role="navigation" aria-label="Posts">
+                            <h2 class="screen-reader-text">Posts navigation</h2>
+                            <div class="nav-links">
+                                 {% if all_news.has_previous %}
+                                    <a class="next page-numbers" href="?page={{ all_news.previous_page_number }}">Previous</a>
+                                 {% endif %}
+                                 {% for i in all_news.paginator.page_range %}
+                                  {% if all_news.number == i %}
+                                    <a class="page-numbers" style="background: green;">{{ i }}</a>
+                                  {% else %}
+                                    <a class="page-numbers" href="?page={{ i }}">{{ i }}</a>
+                                  {% endif %}
+                                {% endfor %}
+                                {% if all_news.has_next %}
+                                   <a class="next page-numbers" href="?page={{ all_news.next_page_number }}">Next</a>
+                                {% endif %}
+
+                            </div>
+                        </nav>
+                        {% endif %}
+
+                    </div>
+                    <!-- #primary -->
+
+                    <div id="secondary" class="widget-area">
+                        <div class="theiaStickySidebar">
+                            <aside id="_pro_advertisement-1" class="widget widget__pro_advertisement">
+                                <div class="ht-advertisment">
+                                    <h4 class="widget-title">Advertisement</h4>
+                                    <div class="ht-ads-image">
+                                       <img alt="Advertisement" src="{% static 'ads/ads5.png' %}" />
+                                    </div>
+                                </div>
+                            </aside>
+                            <aside id="_pro_post_list-1" class="widget widget__pro_post_list">
+                                <h4 class="widget-title">Featured News</h4>
+                                <div class="ht-post-listing style2">
+                                {% for post in featured_news %}
+                                    <div class="ht-post-list ht-clearfix">
+                                        <div class="ht-pl-image">
+                                            <a href="">
+                                                <img alt="Save money by traveling to these 9 places in winter" src="{{ post.thumbnail.url }}"/>
+                                            </a>
+                                        </div>
+
+                                        <div class="ht-pl-content">
+                                            <h3 class="ht-pl-title vl-post-title">
+                                                <a href="{% url 'App_News:viewnews' post.news_title post.id %}">
+                                                    {{ post.news_title }}
+                                                </a>
+                                            </h3>
+
+                                            <div class="ht-pl-date">
+                                                <span class="vl-posted-on"><i class="mdi mdi-clock-time-four-outline"></i>{{ post.post_date|timesince }} ago</span> </div>
+
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                    <!-- #secondary -->
+                </div>
+            </div>
+
+{% endblock %}
+

@@ -1,0 +1,75 @@
+<div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Total News</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ request.user.profile.get_comment_count_by_user.count }}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-newspaper fa-2x text-primary"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+<div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Total Publish News</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ request.user.profile.get_total_publish_news.count }}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-eye fa-2x text-success"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+<div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Total Draft</div>
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ request.user.profile.get_total_daft_news.count }}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-archive fa-2x text-info"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+<div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Schedule Post</div>
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ request.user.profile.get_total_schedule_news.count }}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clock fa-2x text-info"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+<div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Total Editor</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ request.user.profile.get_total_editor_no.count }}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-users fa-2x text-warning"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
